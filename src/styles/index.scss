@@ -1,3 +1,14 @@
 @import './normalize.scss';
 @import './mixin.scss';
 @import './theme.scss';
+
+@font-face {
+  font-style: normal;
+  font-weight: normal;
+  font-family: 'FangZhengZZH';
+  src: url('../assets/fonts/FangZhengZZH/FangZhengZZH.woff') format('woff'),
+    url('../assets/fonts/FangZhengZZH/FangZhengZZH.woff2') format('woff2'),
+    url('../assets/fonts/FangZhengZZH/FangZhengZZH.ttf') format('truetype'),
+    url('../assets/fonts/FangZhengZZH/FangZhengZZH.otf') format('opentype'),
+    url('../assets/fonts/FangZhengZZH/FangZhengZZH.eot') format('embedded-opentype');
+}
