@@ -52,7 +52,7 @@ module.exports = {
     sourceMap: false, // 是否开启CSS SourceMap, 开启后会影响构建性能!
     loaderOptions: {
       sass: {
-        data: `@import "~@/styles/mixin.scss";`,
+        prependData: `@import "~@/styles/mixin.scss";@import "~@/styles/theme.scss";`,
       },
     },
   },
