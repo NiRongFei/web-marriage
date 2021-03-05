@@ -28,7 +28,24 @@
     <el-main class="main">
       <router-view />
     </el-main>
-    <el-footer class="footer"></el-footer>
+    <el-footer class="footer">
+      <div class="footer-wrap">
+        <span>主办单位：南京市民政局</span>
+        <span>承办单位：南京市信息服务中心</span>
+      </div>
+      <div class="footer-wrap">
+        <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备05004952号-7</a>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32010502010232"
+          target="_blank"
+        >
+          <img
+            src="http://mzj.nanjing.gov.cn/images/mzj_gabah_bn.png"
+            style="float:left; margin-right:5px"
+          />苏公网安备 32010502010232号
+        </a>
+      </div>
+    </el-footer>
   </el-container>
 </template>
 
@@ -91,6 +108,33 @@ export default {
         &.is-active {
           background-color: rgba($color: #fff, $alpha: 0.6) !important;
         }
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1.5;
+
+    &-wrap {
+      display: flex;
+      align-items: center;
+
+      a {
+        color: #333;
+
+        + a {
+          margin-left: 10px;
+        }
+        &:hover {
+          color: $color-primary;
+        }
+      }
+      span + span {
+        margin-left: 10px;
       }
     }
   }
