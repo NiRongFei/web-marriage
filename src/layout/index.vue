@@ -70,6 +70,10 @@ export default {
   background: url('../assets/images/bg_header.png') no-repeat top left/100%,
     linear-gradient(180deg, #ff9b97, #fafafa 50%, #fff);
 
+  .main {
+    overflow: visible;
+    padding: 20px 240px 80px;
+  }
   .header {
     padding: 0;
 
