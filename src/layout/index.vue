@@ -28,7 +28,7 @@
     <el-main class="main">
       <router-view />
     </el-main>
-    <el-footer class="footer">
+    <el-footer class="footer" style="height: 100px">
       <div class="footer-wrap">
         <span>主办单位：南京市民政局</span>
         <span>承办单位：南京市信息服务中心</span>
@@ -66,9 +66,9 @@ export default {
 <style lang="scss" scoped>
 #layout {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: url('../assets/images/bg_header.png') no-repeat top left/100%,
-    linear-gradient(180deg, #ff9b97, #fafafa 50%, #fff);
+    linear-gradient(180deg, #ff9b97, #fafafa 50%, #eee);
 
   .main {
     overflow: visible;
@@ -122,10 +122,12 @@ export default {
     justify-content: center;
     font-size: 14px;
     line-height: 1.5;
+    background-color: #fff;
 
     &-wrap {
       display: flex;
       align-items: center;
+      margin-top: 5px;
 
       a {
         color: #333;

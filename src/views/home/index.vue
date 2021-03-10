@@ -1,5 +1,18 @@
 <template>
   <div id="home">
+    <div v-show="showFloater" class="floater">
+      <i class="floater-close el-icon-circle-close" @click="showFloater = false" />
+      <img class="floater-image" src="../../assets/images/img_activity.png" alt="#" />
+    </div>
+    <ul class="toolbar">
+      <li><i class="el-icon-arrow-up" /></li>
+      <li><i class="el-icon-phone-outline" /></li>
+      <li><i class="el-icon-edit-outline" /></li>
+      <li><i class="el-icon-message" /></li>
+      <li><i class="el-icon-map-location" /></li>
+      <li><i class="el-icon-arrow-down" /></li>
+    </ul>
+
     <section class="main">
       <el-carousel class="main-swiper" :interval="5000">
         <el-carousel-item v-for="item in 3" :key="item">
@@ -32,8 +45,8 @@
       </div>
     </section>
 
-    <section class="registrar shadow">
-      <header class="header type-1">登记员风采</header>
+    <section class="section section-shadow registrar">
+      <header class="section-header style-1">登记员风采</header>
       <ul class="registrar-list">
         <li class="registrar-item" v-for="(item, index) in registrarList" :key="index">
           <img class="registrar-item__image" :src="item.image" :alt="item.title" />
@@ -42,22 +55,22 @@
       </ul>
     </section>
 
-    <section class="row">
-      <section class="col shadow policy">
-        <header class="header type-2">政策法规</header>
-        <img class="col-image" src="../../assets/images/img_policy.png" alt="#" />
-        <ul class="col-list">
-          <li class="col-item" v-for="item in 5" :key="item">
+    <section class="section section-row">
+      <section class="section-col section-shadow policy">
+        <header class="section-header style-2">政策法规</header>
+        <img class="section-col__image" src="../../assets/images/img_policy.png" alt="#" />
+        <ul class="section-col__list">
+          <li class="section-col__item" v-for="item in 5" :key="item">
             <a>政策法规标题</a>
             <span>2020-02-02</span>
           </li>
         </ul>
       </section>
-      <section class="col shadow news">
-        <header class="header type-2">婚姻要闻</header>
-        <img class="col-image" src="../../assets/images/img_news.png" alt="#" />
-        <ul class="col-list">
-          <li class="col-item" v-for="item in 5" :key="item">
+      <section class="section-col section-shadow news">
+        <header class="section-header style-2">婚姻要闻</header>
+        <img class="section-col__image" src="../../assets/images/img_news.png" alt="#" />
+        <ul class="section-col__list">
+          <li class="section-col__item" v-for="item in 5" :key="item">
             <a>婚姻要闻标题</a>
             <span>2020-02-02</span>
           </li>
@@ -65,24 +78,48 @@
       </section>
     </section>
 
-    <section class="activity shadow">
-      <header class="header type-1">沙龙活动</header>
-      <ul class="activity-list">
-        <li class="activity-item" v-for="(item, index) in activityList" :key="index">
-          <img class="activity-item__image" :src="item.image" :alt="item.title" />
-          <div class="activity-item__title">{{ item.title }}</div>
+    <section class="section section-shadow module">
+      <header class="section-header style-1">沙龙活动</header>
+      <ul class="module-list">
+        <li class="module-item" v-for="(item, index) in activityList" :key="index">
+          <img class="module-item__image" :src="item.image" :alt="item.title" />
+          <div class="module-item__title">{{ item.title }}</div>
         </li>
       </ul>
     </section>
 
-    <section class="activity shadow">
-      <header class="header type-1">在线课堂</header>
-      <ul class="activity-list">
-        <li class="activity-item" v-for="(item, index) in classroomList" :key="index">
-          <img class="activity-item__image" :src="item.image" :alt="item.title" />
-          <div class="activity-item__title">{{ item.title }}</div>
+    <section class="section section-shadow module">
+      <header class="section-header style-1">在线课堂</header>
+      <ul class="module-list">
+        <li class="module-item" v-for="(item, index) in classroomList" :key="index">
+          <img class="module-item__image" :src="item.image" :alt="item.title" />
+          <div class="module-item__title">{{ item.title }}</div>
         </li>
       </ul>
+    </section>
+
+    <section class="section section-row">
+      <section class="section-col section-shadow message">
+        <header class="section-header style-3">留言回复</header>
+        <ul class="message-list">
+          <li class="message-item" v-for="(item, index) in messageList" :key="index">
+            <div class="message-item__question">
+              <b>Q：</b><span>{{ item.question }}</span>
+            </div>
+            <div class="message-item__answer">
+              <b>A：</b><span>{{ item.answer }}</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="section-col section-shadow question">
+        <header class="section-header style-3">常见问题</header>
+        <ul class="question-list">
+          <li class="question-item" v-for="(item, index) in questionList" :key="index">
+            {{ item }}
+          </li>
+        </ul>
+      </section>
     </section>
   </div>
 </template>
@@ -92,6 +129,7 @@ export default {
   name: 'Home',
   data() {
     return {
+      showFloater: true,
       registrarList: [
         {
           title: '宋微微——南京市婚姻登记处服务模范',
@@ -137,6 +175,14 @@ export default {
           image: require('@/assets/images/img_classroom3.png'),
         },
       ],
+      messageList: [
+        { question: '留言内容', answer: '回复内容' },
+        { question: '留言内容', answer: '回复内容' },
+        { question: '留言内容', answer: '回复内容' },
+      ],
+      questionList: Array(8).fill(
+        '【常见问题】南京市婚姻登记需要提前多久开始网上预约结婚登记信息...'
+      ),
     };
   },
 };
@@ -144,243 +190,377 @@ export default {
 
 <style lang="scss" scoped>
 #home {
-  .header {
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    color: #db554e;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    background-color: #fff;
-    border-bottom: 1px solid #bbb;
-
-    &.type-1 {
-      background: url('../../assets/images/bg_header_lg.png') no-repeat 46.5% center/370px;
-    }
-    &.type-2 {
-      background: url('../../assets/images/bg_header_sm.png') no-repeat 70% center/130px;
-    }
-    &.type-3 {
-      text-align: left;
-      background: url('../../assets/images/bg_header_sm.png') no-repeat 30% center/130px;
-    }
-  }
-  .shadow {
-    transition: box-shadow 0.5s;
+  .floater {
+    position: fixed;
+    top: 50vh;
+    left: 0;
+    width: 240px;
+    height: 240px;
+    margin-top: -120px;
     box-shadow: 0 0 5px #ddd;
 
     &:hover {
       box-shadow: 0 0 10px #bbb;
     }
-  }
-  .row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 40px;
-  }
-  .col {
-    width: 49%;
-    padding: 0 10px;
-    background-color: #fff;
 
+    &-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
     &-image {
       display: block;
       width: 100%;
-      height: 200px;
-      margin-top: 15px;
+      height: 100%;
       object-fit: cover;
     }
-    &-list {
-      padding: 15px 0;
-      list-style: disc inside;
+  }
+  .toolbar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 50vh;
+    right: 8px;
+    width: 50px;
+    height: 250px;
+    margin-top: -125px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    background-color: rgba($color: #ccc, $alpha: 0.8);
+
+    i {
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        color: #eee;
+      }
     }
-    &-item {
+  }
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-swiper {
+      width: 850px;
+      height: 450px;
+
+      ::v-deep .el-carousel {
+        &__container {
+          width: 100%;
+          height: 100%;
+        }
+        &__indicators {
+          bottom: 50px;
+        }
+        &__button {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+        }
+        &__arrow {
+          font-size: 24px;
+        }
+      }
+      &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      &__title {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding-left: 20px;
+        color: #fff;
+        background-color: rgba($color: #eee, $alpha: 0.2);
+      }
+    }
+    &-service {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 330px;
+      height: 450px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 5px #bbb;
+
+      &__title {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        color: #db554e;
+        font-size: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+      &__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: space-between;
+      }
+      &__item {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 130px;
+        height: 65px;
+        margin: 10px 0;
+        color: #fff;
+        font-size: 16px;
+        border: 2px groove #ddd;
+        background-color: #ff9d9b;
+        white-space: pre-wrap;
+
+        &:hover {
+          border-color: #db554e;
+          box-shadow: 0 0 5px #bbb;
+        }
+        > img {
+          width: 30px;
+          height: auto;
+          margin-right: 10px;
+        }
+      }
+      &__image {
+        widows: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+    }
+  }
+  .section {
+    margin-top: 30px;
+
+    &-header {
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      color: #db554e;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      background-color: #fff;
+      border-bottom: 1px solid #bbb;
+
+      &.style-1 {
+        background: url('../../assets/images/bg_header_lg.png') no-repeat 46.5% center/370px;
+      }
+      &.style-2 {
+        background: url('../../assets/images/bg_header_sm.png') no-repeat 72% center/130px;
+      }
+      &.style-3 {
+        text-align: left;
+        background: url('../../assets/images/bg_header_sm.png') no-repeat 18% center/130px;
+      }
+    }
+    &-shadow {
+      transition: box-section-shadow 0.5s;
+      box-shadow: 0 0 5px #ddd;
+
+      &:hover {
+        box-shadow: 0 0 10px #bbb;
+      }
+    }
+    &-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
-      color: #666;
+    }
+    &-col {
+      width: 49%;
+      padding: 0 15px;
+      background-color: #fff;
 
-      + .col-item {
-        margin-top: 20px;
+      &__image {
+        display: block;
+        width: 100%;
+        height: 200px;
+        margin-top: 15px;
+        object-fit: cover;
       }
-      > a {
-        display: inline-block;
-        vertical-align: center;
-        width: 80%;
-        font-size: 14px;
-        cursor: pointer;
-        @include text-ellipsis;
+      &__list {
+        padding: 15px 0;
+        list-style: disc inside;
+      }
+      &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: #666;
 
-        &:hover {
-          color: #db554e;
-          text-decoration: underline solid #db554e;
+        + .section-col__item {
+          margin-top: 15px;
+        }
+        > a {
+          display: inline-block;
+          vertical-align: center;
+          width: 80%;
+          font-size: 14px;
+          cursor: pointer;
+          @include text-ellipsis;
+
+          &:hover {
+            color: #db554e;
+            text-decoration: underline solid #db554e;
+          }
         }
       }
     }
   }
-}
-.main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  .module {
+    padding: 0 20px;
+    background-color: #fff;
 
-  &-swiper {
-    width: 850px;
-    height: 450px;
+    &-list {
+      display: flex;
+      // align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 15px 0;
+    }
+    &-item {
+      position: relative;
+      width: 360px;
 
-    ::v-deep .el-carousel {
-      &__container {
+      &__image {
+        display: block;
+        width: 360px;
+        height: 150px;
+        object-fit: cover;
+      }
+      &__title {
+        width: 100%;
+        height: 60px;
+        margin-top: 20px;
+        color: #666;
+        font-size: 14px;
+        @include text-ellipsis(3);
+      }
+    }
+  }
+  .registrar {
+    padding: 0 20px;
+    background-color: #fff;
+
+    &-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+    }
+    &-item {
+      position: relative;
+      width: 360px;
+      height: 220px;
+
+      &__image {
+        display: block;
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
-      &__indicators {
-        bottom: 50px;
+      &__title {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding-left: 25px;
+        color: #fff;
+        font-size: 14px;
+        background-color: rgba($color: #000, $alpha: 0.3);
+        @include text-ellipsis;
       }
-      &__button {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-    }
-    &__image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    &__title {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 50px;
-      line-height: 50px;
-      padding-left: 20px;
-      color: #fff;
-      background-color: rgba($color: #eee, $alpha: 0.2);
     }
   }
-  &-service {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 330px;
-    height: 450px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 5px #bbb;
+  .message {
+    &-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 400px;
+      padding: 0 20px;
+    }
+    &-item {
+      flex: 1;
+      padding: 20px 0;
 
-    &__title {
+      b {
+        color: #db554e;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      + .message-item {
+        border-top: 1px dashed #eee;
+      }
+      &__question {
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        @include text-ellipsis;
+
+        > span {
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+
+          &:hover {
+            color: #db554e;
+            text-decoration: underline solid #db554e;
+          }
+        }
+      }
+      &__answer {
+        width: 100%;
+        min-height: 40px;
+        margin-top: 10px;
+        line-height: 1.5;
+        @include text-ellipsis(3);
+
+        > span {
+          color: #666;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .question {
+    &-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 400px;
+      padding: 20px;
+    }
+    &-item {
       width: 100%;
       height: 40px;
-      line-height: 40px;
-      color: #db554e;
-      font-size: 20px;
-      border-bottom: 1px solid #ddd;
-    }
-    &__list {
-      display: flex;
-      flex-wrap: wrap;
-      align-content: center;
-      justify-content: space-between;
-    }
-    &__item {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 130px;
-      height: 65px;
-      margin: 10px 0;
-      color: #fff;
       font-size: 16px;
-      border: 2px groove #ddd;
-      background-color: #ff9d9b;
-      white-space: pre-wrap;
+      font-weight: 600;
+      cursor: pointer;
+      @include text-ellipsis(2);
 
       &:hover {
-        border-color: #db554e;
-        box-shadow: 0 0 5px #bbb;
+        color: #db554e;
+        text-decoration: underline solid #db554e;
       }
-      > img {
-        width: 30px;
-        height: auto;
-        margin-right: 10px;
-      }
-    }
-    &__image {
-      widows: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-  }
-}
-.registrar {
-  padding: 0 20px;
-  margin-top: 40px;
-  background-color: #fff;
-
-  &-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 0;
-  }
-  &-item {
-    position: relative;
-    width: 360px;
-    height: 200px;
-
-    &__image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    &__title {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 45px;
-      line-height: 45px;
-      padding-left: 20px;
-      color: #fff;
-      font-size: 14px;
-      background-color: rgba($color: #000, $alpha: 0.3);
-      @include text-ellipsis;
-    }
-  }
-}
-.activity {
-  padding: 0 20px;
-  margin-top: 40px;
-  background-color: #fff;
-
-  &-list {
-    display: flex;
-    // align-items: center;
-    justify-content: space-between;
-    padding: 15px 0;
-  }
-  &-item {
-    position: relative;
-    width: 360px;
-    // height: 200px;
-
-    &__image {
-      display: block;
-      width: 360px;
-      height: 150px;
-      object-fit: cover;
-    }
-    &__title {
-      margin-top: 15px;
-      color: #666;
-      font-size: 14px;
-      @include text-ellipsis(3);
     }
   }
 }
