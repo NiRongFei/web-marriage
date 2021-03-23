@@ -23,22 +23,22 @@
       <div class="main-service">
         <h3 class="main-service__title">快捷服务</h3>
         <ul class="main-service__list">
-          <li class="main-service__item">
+          <router-link class="main-service__item" tag="li" to="/book/register">
             <img src="../../assets/images/icon_registration.png" alt="#" />
             <span>婚姻登记<br />预约服务</span>
-          </li>
-          <li class="main-service__item">
-            <img src="../../assets/images/icon_premarital.png" alt="#" />
-            <span>婚前辅导<br />课程预约</span>
-          </li>
-          <li class="main-service__item">
-            <img src="../../assets/images/icon_devorce.png" alt="#" />
-            <span>离婚辅导<br />课程预约</span>
-          </li>
-          <li class="main-service__item">
+          </router-link>
+          <router-link class="main-service__item" tag="li" to="/book/certificate">
             <img src="../../assets/images/icon_certificate.png" alt="#" />
             <span>颁证仪式<br />预约服务</span>
-          </li>
+          </router-link>
+          <router-link class="main-service__item" tag="li" to="/book/family">
+            <img src="../../assets/images/icon_premarital.png" alt="#" />
+            <span>婚姻家庭<br />辅导预约</span>
+          </router-link>
+          <!-- <li class="main-service__item">
+            <img src="../../assets/images/icon_devorce.png" alt="#" />
+            <span>离婚辅导<br />课程预约</span>
+          </li> -->
         </ul>
 
         <img class="main-service__image" src="../../assets/images/img_service.png" alt="#" />
@@ -285,6 +285,7 @@ export default {
         line-height: 50px;
         padding-left: 20px;
         color: #fff;
+        font-size: 16px;
         background-color: rgba($color: #eee, $alpha: 0.2);
       }
     }
@@ -321,9 +322,10 @@ export default {
         margin: 10px 0;
         color: #fff;
         font-size: 16px;
-        border: 2px groove #ddd;
+        border: 2px groove #eee;
         background-color: #ff9d9b;
         white-space: pre-wrap;
+        cursor: pointer;
 
         &:hover {
           border-color: #db554e;
@@ -416,7 +418,7 @@ export default {
 
           &:hover {
             color: #db554e;
-            text-decoration: underline solid #db554e;
+            text-decoration: underline #db554e;
           }
         }
       }
@@ -522,7 +524,7 @@ export default {
 
           &:hover {
             color: #db554e;
-            text-decoration: underline solid #db554e;
+            text-decoration: underline #db554e;
           }
         }
       }
@@ -559,7 +561,7 @@ export default {
 
       &:hover {
         color: #db554e;
-        text-decoration: underline solid #db554e;
+        text-decoration: underline #db554e;
       }
     }
   }

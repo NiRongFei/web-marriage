@@ -1,1 +1,6 @@
-$color-primary: #d0524b;
+$--color-primary: #d0524b;
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+

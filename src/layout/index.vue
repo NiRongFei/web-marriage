@@ -4,8 +4,8 @@
       <div class="header-wrap" style="height: 100px">
         <img class="header-logo" src="../assets/images/logo.png" alt="#" />
         <div class="header-title">
-          <div class="cn">南京市婚姻公共服务平台</div>
-          <div class="en">Nanjing Public Service Platform</div>
+          <!-- <div class="cn">南京市婚姻公共服务平台</div>
+          <div class="en">Nanjing Public Service Platform</div> -->
         </div>
       </div>
       <el-menu
@@ -14,18 +14,27 @@
         text-color="#fff"
         background-color="#d0524b"
         active-text-color="#d0524b"
-        :default-active="activeMenu"
+        :default-active="$route.path"
         unique-opened
         router
       >
         <el-menu-item index="/home">首页</el-menu-item>
         <el-menu-item index="/news">婚姻要闻</el-menu-item>
-        <el-menu-item index="/notice">通知公告</el-menu-item>
         <el-menu-item index="/policy">政策法规</el-menu-item>
-        <el-menu-item index="/register">预约登记</el-menu-item>
+        <el-menu-item index="/notice">通知公告</el-menu-item>
+        <el-menu-item index="/booking">预约登记</el-menu-item>
       </el-menu>
     </el-header>
     <el-main class="main">
+      <div class="main-breadcrumb" v-show="$route.path !== '/home'">
+        <i class="el-icon-s-home"></i>
+        <el-breadcrumb separator=">">
+          <el-breadcrumb-item to="/home" replace>首页</el-breadcrumb-item>
+          <el-breadcrumb-item v-for="route in breadcrumbs" :key="route.name" :to="route.path">
+            {{ route.meta.title }}
+          </el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
       <router-view />
     </el-main>
     <el-footer class="footer" style="height: 100px">
@@ -53,8 +62,8 @@
 export default {
   name: 'Layout',
   computed: {
-    activeMenu() {
-      return this.$route.fullPath;
+    breadcrumbs() {
+      return this.$route.matched.filter((item) => item.meta && item.meta.title);
     },
   },
   data() {
@@ -65,7 +74,6 @@ export default {
 
 <style lang="scss" scoped>
 #layout {
-  width: 100vw;
   min-height: 100vh;
   background: url('../assets/images/bg_header.png') no-repeat top left/100%,
     linear-gradient(180deg, #ff9b97, #fafafa 50%, #eee);
@@ -73,6 +81,20 @@ export default {
   .main {
     overflow: visible;
     padding: 20px 240px 80px;
+
+    &-breadcrumb {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 5vh;
+      border-bottom: 1px solid #ccc;
+
+      .el-icon-s-home {
+        margin-right: 10px;
+        color: #d0524b;
+        font-size: 18px;
+      }
+    }
   }
   .header {
     padding: 0;
@@ -136,7 +158,7 @@ export default {
           margin-left: 10px;
         }
         &:hover {
-          color: $color-primary;
+          color: $--color-primary;
         }
       }
       span + span {
