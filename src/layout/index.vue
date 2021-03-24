@@ -14,15 +14,30 @@
         text-color="#fff"
         background-color="#d0524b"
         active-text-color="#d0524b"
-        :default-active="$route.path"
+        :default-active="activeMenu"
         unique-opened
         router
       >
-        <el-menu-item index="/home">首页</el-menu-item>
-        <el-menu-item index="/news">婚姻要闻</el-menu-item>
-        <el-menu-item index="/policy">政策法规</el-menu-item>
-        <el-menu-item index="/notice">通知公告</el-menu-item>
-        <el-menu-item index="/booking">预约登记</el-menu-item>
+        <template v-for="menu in navMenu">
+          <el-submenu
+            v-if="menu.meta.submenu"
+            :key="menu.name"
+            :index="menu.path"
+            popper-class="nj-popper"
+            popper-append-to-body
+          >
+            <template slot="title">{{ menu.meta.title }}</template>
+            <el-menu-item
+              v-for="submenu in menu.children"
+              :key="submenu.name"
+              :index="menu.path + '/' + submenu.path"
+              >{{ submenu.meta.title }}
+            </el-menu-item>
+          </el-submenu>
+          <el-menu-item v-else :key="menu.name" :index="menu.path">{{
+            menu.meta.title
+          }}</el-menu-item>
+        </template>
       </el-menu>
     </el-header>
     <el-main class="main">
@@ -59,9 +74,18 @@
 </template>
 
 <script>
+import { baseRoutes } from '@/router';
+
 export default {
   name: 'Layout',
   computed: {
+    navMenu() {
+      return baseRoutes;
+    },
+    activeMenu() {
+      console.log(this.$route);
+      return this.$route.matched ? this.$route.matched[1].path : this.$route.path;
+    },
     breadcrumbs() {
       return this.$route.matched.filter((item) => item.meta && item.meta.title);
     },
@@ -87,6 +111,7 @@ export default {
       align-items: center;
       width: 100%;
       height: 5vh;
+      margin-bottom: 2vh;
       border-bottom: 1px solid #ccc;
 
       .el-icon-s-home {
@@ -133,6 +158,12 @@ export default {
 
         &.is-active {
           background-color: rgba($color: #fff, $alpha: 0.6) !important;
+        }
+      }
+      ::v-deep .el-submenu {
+        &__title,
+        &__icon-arrow {
+          color: #fff !important;
         }
       }
     }

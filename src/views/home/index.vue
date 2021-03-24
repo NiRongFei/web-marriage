@@ -23,22 +23,22 @@
       <div class="main-service">
         <h3 class="main-service__title">快捷服务</h3>
         <ul class="main-service__list">
-          <router-link class="main-service__item" tag="li" to="/book/register">
+          <router-link class="main-service__item" tag="li" to="/booking/register">
             <img src="../../assets/images/icon_registration.png" alt="#" />
             <span>婚姻登记<br />预约服务</span>
           </router-link>
-          <router-link class="main-service__item" tag="li" to="/book/certificate">
+          <router-link class="main-service__item" tag="li" to="/booking/certificate">
             <img src="../../assets/images/icon_certificate.png" alt="#" />
             <span>颁证仪式<br />预约服务</span>
           </router-link>
-          <router-link class="main-service__item" tag="li" to="/book/family">
+          <router-link class="main-service__item" tag="li" to="/booking/family">
             <img src="../../assets/images/icon_premarital.png" alt="#" />
             <span>婚姻家庭<br />辅导预约</span>
           </router-link>
-          <!-- <li class="main-service__item">
+          <router-link class="main-service__item" tag="li" to="/activity/list">
             <img src="../../assets/images/icon_devorce.png" alt="#" />
-            <span>离婚辅导<br />课程预约</span>
-          </li> -->
+            <span>活动沙龙<br />报名预约</span>
+          </router-link>
         </ul>
 
         <img class="main-service__image" src="../../assets/images/img_service.png" alt="#" />
@@ -48,30 +48,42 @@
     <section class="section section-shadow registrar">
       <header class="section-header style-1">登记员风采</header>
       <ul class="registrar-list">
-        <li class="registrar-item" v-for="(item, index) in registrarList" :key="index">
+        <router-link
+          class="registrar-item"
+          v-for="(item, index) in registrarList"
+          :key="index"
+          :to="`/registrar/${index}`"
+          tag="li"
+        >
           <img class="registrar-item__image" :src="item.image" :alt="item.title" />
           <div class="registrar-item__title">{{ item.title }}</div>
-        </li>
+        </router-link>
       </ul>
     </section>
 
     <section class="section section-row">
       <section class="section-col section-shadow policy">
         <header class="section-header style-2">政策法规</header>
-        <img class="section-col__image" src="../../assets/images/img_policy.png" alt="#" />
+        <router-link class="section-col__link" to="/policy">
+          <img class="section-col__image" src="../../assets/images/img_policy.png" alt="#" />
+        </router-link>
         <ul class="section-col__list">
           <li class="section-col__item" v-for="item in 5" :key="item">
-            <a>政策法规标题</a>
+            <router-link :to="`/policy/${item}`"
+              >关于规范我省婚姻登记和婚姻服务工作的意见
+            </router-link>
             <span>2020-02-02</span>
           </li>
         </ul>
       </section>
       <section class="section-col section-shadow news">
         <header class="section-header style-2">婚姻要闻</header>
-        <img class="section-col__image" src="../../assets/images/img_news.png" alt="#" />
+        <router-link class="section-col__link" to="/news">
+          <img class="section-col__image" src="../../assets/images/img_news.png" alt="#" />
+        </router-link>
         <ul class="section-col__list">
           <li class="section-col__item" v-for="item in 5" :key="item">
-            <a>婚姻要闻标题</a>
+            <router-link :to="`/news/${item}`">南京婚姻家庭辅导服务划定统一标准</router-link>
             <span>2020-02-02</span>
           </li>
         </ul>
@@ -79,22 +91,39 @@
     </section>
 
     <section class="section section-shadow module">
-      <header class="section-header style-1">沙龙活动</header>
+      <header class="section-header style-1">
+        <span>活动沙龙</span>
+        <router-link class="section-header__link" to="/activity/list"
+          >更多<i class="el-icon-d-arrow-right" />
+        </router-link>
+      </header>
       <ul class="module-list">
-        <li class="module-item" v-for="(item, index) in activityList" :key="index">
+        <router-link
+          class="module-item"
+          v-for="(item, index) in activityList"
+          :key="index"
+          :to="`/activity/${index}`"
+          tag="li"
+        >
           <img class="module-item__image" :src="item.image" :alt="item.title" />
           <div class="module-item__title">{{ item.title }}</div>
-        </li>
+        </router-link>
       </ul>
     </section>
 
     <section class="section section-shadow module">
       <header class="section-header style-1">在线课堂</header>
       <ul class="module-list">
-        <li class="module-item" v-for="(item, index) in classroomList" :key="index">
+        <router-link
+          class="module-item"
+          v-for="(item, index) in classroomList"
+          :key="index"
+          :to="`/classroom/${index}`"
+          tag="li"
+        >
           <img class="module-item__image" :src="item.image" :alt="item.title" />
           <div class="module-item__title">{{ item.title }}</div>
-        </li>
+        </router-link>
       </ul>
     </section>
 
@@ -132,15 +161,15 @@ export default {
       showFloater: true,
       registrarList: [
         {
-          title: '宋微微——南京市婚姻登记处服务模范',
+          title: '宋微微-南京市婚姻登记处服务模范',
           image: require('@/assets/images/img_registrar1.png'),
         },
         {
-          title: '王飞翔——南京市婚姻登记处服务模范',
+          title: '王飞翔-南京市婚姻登记处服务模范',
           image: require('@/assets/images/img_registrar2.png'),
         },
         {
-          title: '李鑫——南京市鼓楼区婚姻登记处服务之星',
+          title: '李鑫-南京市鼓楼区婚姻登记处服务之星',
           image: require('@/assets/images/img_registrar3.png'),
         },
       ],
@@ -216,6 +245,7 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 5px;
     }
   }
   .toolbar {
@@ -252,6 +282,7 @@ export default {
     &-swiper {
       width: 850px;
       height: 450px;
+      border-radius: 5px;
 
       ::v-deep .el-carousel {
         &__container {
@@ -293,9 +324,10 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 330px;
+      width: 320px;
       height: 450px;
       padding: 20px;
+      border-radius: 5px;
       background-color: #fff;
       box-shadow: 0 0 5px #bbb;
 
@@ -322,6 +354,7 @@ export default {
         margin: 10px 0;
         color: #fff;
         font-size: 16px;
+        border-radius: 5px;
         border: 2px groove #eee;
         background-color: #ff9d9b;
         white-space: pre-wrap;
@@ -341,13 +374,16 @@ export default {
         widows: 100%;
         height: 150px;
         object-fit: cover;
+        border-radius: 5px;
       }
     }
   }
   .section {
     margin-top: 30px;
+    border-radius: 5px;
 
     &-header {
+      position: relative;
       width: 100%;
       height: 60px;
       line-height: 60px;
@@ -368,6 +404,19 @@ export default {
         text-align: left;
         background: url('../../assets/images/bg_header_sm.png') no-repeat 18% center/130px;
       }
+      &__link {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        color: #db554e;
+        font-size: 14px;
+        font-weight: 500;
+        transform: translateY(-50%);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     &-shadow {
       transition: box-section-shadow 0.5s;
@@ -383,8 +432,9 @@ export default {
       justify-content: space-between;
     }
     &-col {
-      width: 49%;
+      width: 580px;
       padding: 0 15px;
+      border-radius: 5px;
       background-color: #fff;
 
       &__image {
@@ -411,7 +461,8 @@ export default {
         > a {
           display: inline-block;
           vertical-align: center;
-          width: 80%;
+          max-width: 80%;
+          color: #333;
           font-size: 14px;
           cursor: pointer;
           @include text-ellipsis;
@@ -430,7 +481,7 @@ export default {
 
     &-list {
       display: flex;
-      // align-items: center;
+      align-items: center;
       justify-content: space-between;
       width: 100%;
       padding: 15px 0;
@@ -438,17 +489,23 @@ export default {
     &-item {
       position: relative;
       width: 360px;
+      border-radius: 5px;
+      cursor: pointer;
 
+      &:hover {
+        box-shadow: 0 0 10px #bbb;
+      }
       &__image {
         display: block;
         width: 360px;
         height: 150px;
         object-fit: cover;
+        border-radius: 5px 5px 0 0;
       }
       &__title {
         width: 100%;
-        height: 60px;
-        margin-top: 20px;
+        height: 70px;
+        padding: 10px;
         color: #666;
         font-size: 14px;
         @include text-ellipsis(3);
@@ -469,12 +526,18 @@ export default {
       position: relative;
       width: 360px;
       height: 220px;
+      cursor: pointer;
+      border-radius: 5px;
 
+      &:hover {
+        box-shadow: 0 0 10px #bbb;
+      }
       &__image {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 5px;
       }
       &__title {
         position: absolute;
@@ -486,6 +549,7 @@ export default {
         padding-left: 25px;
         color: #fff;
         font-size: 14px;
+        border-radius: 0 0 5px 5px;
         background-color: rgba($color: #000, $alpha: 0.3);
         @include text-ellipsis;
       }

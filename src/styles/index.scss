@@ -13,15 +13,21 @@
     url('../assets/fonts/FangZhengZZH/FangZhengZZH.eot') format('embedded-opentype');
 }
 
+.nj-popper {
+  .el-menu-item.is-active {
+    background-color: rgba($color: #fff, $alpha: 0.6) !important;
+  }
+}
+
 .nj-wrapper {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: 2vh;
 
   .nj-aside {
     width: 200px;
-    border: 1px solid #ccc;
+    border-radius: 5px;
+    border: 1px solid #eee;
 
     &__title {
       width: 100%;
@@ -31,10 +37,13 @@
       font-size: 20px;
       font-weight: 600;
       text-align: center;
-      background-color: #eee;
-      border-bottom: 1px solid #d0524b;
+      background-color: #fff;
+      border-radius: 5px 5px 0 0;
+      border-bottom: 2px solid #d0524b;
     }
     &__menu {
+      border-radius: 0 0 5px 5px;
+
       .el-menu-item + .el-menu-item {
         border-top: 1px solid #eee;
       }
@@ -42,9 +51,11 @@
   }
   .nj-main {
     width: 900px;
+    border-radius: 5px;
     background-color: #fff;
   }
   .nj-content {
+    
     &__title {
       position: relative;
       height: 5vh;
@@ -114,17 +125,21 @@
   }
   .nj-article {
     width: 100%;
+    min-height: 50vh;
     padding: 20px;
     line-height: 1.5;
 
     &__title {
-      height: 5vh;
-      line-height: 5vh;
+      height: 8vh;
+      line-height: 8vh;
       font-size: 18px;
       text-align: center;
       border-bottom: 1px dashed #ccc;
     }
 
+    h4 {
+      margin-top: 1vh;
+    }
     p {
       margin-top: 1vh;
       text-indent: 30px;
