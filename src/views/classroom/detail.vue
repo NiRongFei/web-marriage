@@ -1,30 +1,30 @@
 <template>
-  <section class="activity">
-    <div class="activity-info">
-      <el-carousel class="activity-info__swiper" :interval="5000">
+  <section class="classroom">
+    <div class="classroom-info">
+      <el-carousel class="classroom-info__swiper" :interval="5000">
         <el-carousel-item v-for="item in 3" :key="item">
           <img
-            class="activity-info__image"
-            :src="require(`@/assets/images/img_activity${item}.png`)"
+            class="classroom-info__image"
+            :src="require(`@/assets/images/img_classroom${item}.png`)"
             alt="#"
           />
         </el-carousel-item>
       </el-carousel>
-      <h3 class="activity-info__title">活动沙龙标题</h3>
-      <p class="activity-info__intro">活动沙龙简介</p>
+      <h3 class="classroom-info__title">在线课堂标题</h3>
+      <p class="classroom-info__intro">在线课堂简介</p>
     </div>
-    <el-card class="activity-apply">
-      <h3 slot="header">活动沙龙预约</h3>
+    <el-card class="classroom-apply">
+      <h3 slot="header">在线课堂预约</h3>
       <el-form
-        class="activity-apply__form"
-        ref="activityForm"
-        :model="activityForm"
-        :rules="activityRules"
+        class="classroom-apply__form"
+        ref="classroomForm"
+        :model="classroomForm"
+        :rules="classroomRules"
         label-width="100px"
       >
         <el-form-item label="预约人" prop="name">
           <el-input
-            v-model="activityForm.name"
+            v-model="classroomForm.name"
             :maxlength="20"
             placeholder="输入预约人姓名"
             clearable
@@ -32,7 +32,7 @@
         </el-form-item>
         <el-form-item label="身份证号" prop="idcard">
           <el-input
-            v-model="activityForm.idcard"
+            v-model="classroomForm.idcard"
             type="number"
             :maxlength="18"
             placeholder="输入预约人身份证号"
@@ -41,7 +41,7 @@
         </el-form-item>
         <el-form-item label="联系方式" prop="mobile">
           <el-input
-            v-model="activityForm.mobile"
+            v-model="classroomForm.mobile"
             type="number"
             :maxlength="11"
             placeholder="输入预约人联系方式"
@@ -50,7 +50,7 @@
         </el-form-item>
         <el-form-item label="预约日期" prop="date">
           <el-date-picker
-            v-model="activityForm.date"
+            v-model="classroomForm.date"
             placeholder="选择预约报名日期"
           ></el-date-picker>
         </el-form-item>
@@ -64,9 +64,9 @@
 
 <script>
 export default {
-  name: 'ActivityDetail',
+  name: 'ClassroomDetail',
   computed: {
-    activityRules() {
+    classroomRules() {
       return {
         name: [{ required: true, message: '请输入预约人姓名' }],
         date: [{ required: true, message: '请选择预约报名日期' }],
@@ -77,7 +77,7 @@ export default {
   },
   data() {
     return {
-      activityForm: {
+      classroomForm: {
         name: '',
         date: '',
         idcard: '',
@@ -86,14 +86,14 @@ export default {
     };
   },
   beforeRouteEnter(to, from, next) {
-    to.meta.title = '活动沙龙标题';
+    to.meta.title = '在线课堂标题';
     next();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.activity {
+.classroom {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;

@@ -2,12 +2,10 @@
   <section class="certific">
     <div class="certific-info">
       <img class="certific-info__image" src="../../assets/images/img_booking_family.png" alt="#" />
-      <div class="certific-info__intro">
-        <h3>颁证仪式预约</h3>
-        <p>
-          婚姻登记处聘请心理咨询师、社工、律师等专业人士为公众免费提供婚前辅导、婚姻家庭关系调适、离婚调解、法律咨询等服务，为婚姻家庭保驾护航。
-        </p>
-      </div>
+      <h3 class="certific-info__title">颁证仪式预约</h3>
+      <p class="certific-info__intro">
+        婚姻登记处聘请心理咨询师、社工、律师等专业人士为公众免费提供婚前辅导、婚姻家庭关系调适、离婚调解、法律咨询等服务，为婚姻家庭保驾护航。
+      </p>
     </div>
     <el-tabs class="certific-tabs" type="border-card">
       <el-tab-pane label="预约颁证" lazy>
@@ -57,9 +55,9 @@
             </el-select>
           </el-form-item>
           <el-form-item label="预约日期" prop="date">
-            <el-date-picker v-model="bookForm.date" placeholder="选择预约日期"></el-date-picker>
+            <el-date-picker v-model="bookForm.date" placeholder="选择预约报名日期"></el-date-picker>
           </el-form-item>
-          <el-form-item label="其它需求">
+          <el-form-item label="其它需求" prop="remark">
             <el-input
               v-model="bookForm.remark"
               type="textarea"
@@ -69,8 +67,8 @@
               clearable
             ></el-input>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary" style="width: 100%">提交预约</el-button>
+          <el-form-item style="margin-top: 50px">
+            <el-button type="primary" style="width: 100%">报名预约</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -87,7 +85,7 @@
             <el-input
               v-model="queryForm.mobile"
               type="number"
-              size="medium"
+              size="small"
               :maxlength="11"
               placeholder="输入预约手机号"
               clearable
@@ -97,28 +95,46 @@
             <el-input
               v-model="queryForm.idcard"
               type="number"
-              size="medium"
+              size="small"
               :maxlength="18"
               placeholder="输入预约身份证号"
               clearable
             ></el-input>
           </el-form-item>
         </el-form>
-        <el-table
-          class="certific-table"
-          height="40vh"
-          size="medium"
-          :data="tableData"
-          border
-          stripe
-        >
-          <el-table-column label="预约人" prop="name" align="center"></el-table-column>
-          <el-table-column label="身份证号" prop="idcard" align="center"></el-table-column>
-          <el-table-column label="联系方式" prop="mobile" align="center"></el-table-column>
-          <el-table-column label="颁证机构" prop="organ" align="center"></el-table-column>
-          <el-table-column label="仪式风格" prop="style" align="center"></el-table-column>
-          <el-table-column label="预约日期" prop="date" align="center"></el-table-column>
-          <el-table-column label="操作" align="center">
+        <el-table class="certific-table" :data="tableData" size="medium" border stripe>
+          <el-table-column label="预约人" prop="name" align="center" width="150"></el-table-column>
+          <el-table-column
+            label="身份证号"
+            prop="idcard"
+            align="center"
+            width="200"
+          ></el-table-column>
+          <el-table-column
+            label="联系方式"
+            prop="mobile"
+            align="center"
+            width="150"
+          ></el-table-column>
+          <el-table-column
+            label="颁证机构"
+            prop="organ"
+            align="center"
+            width="150"
+          ></el-table-column>
+          <el-table-column
+            label="仪式风格"
+            prop="style"
+            align="center"
+            width="150"
+          ></el-table-column>
+          <el-table-column
+            label="预约日期"
+            prop="date"
+            align="center"
+            width="200"
+          ></el-table-column>
+          <el-table-column label="操作" align="center" width="100" fixed="right">
             <div class="operation">
               <el-popconfirm
                 trigger="click"
@@ -151,7 +167,7 @@ export default {
     bookRules() {
       return {
         name: [{ required: true, message: '请输入预约人姓名' }],
-        date: [{ required: true, message: '请选择预约日期' }],
+        date: [{ required: true, message: '请选择预约报名日期' }],
         theme: [{ required: true, message: '请选择颁证仪式主题' }],
         idcard: [{ required: true, message: '请输入预约人身份证' }],
         mobile: [{ required: true, message: '请输入预约人联系方式' }],
@@ -191,31 +207,28 @@ export default {
 <style lang="scss" scoped>
 .certific {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: space-between;
 
   &-info {
-    width: 500px;
+    width: 550px;
 
     &__image {
       display: block;
       width: 100%;
       height: auto;
     }
-    &__intro {
+    &__title {
       width: 100%;
       margin-top: 2vh;
-
-      > h3 {
-        text-align: center;
-      }
-      > p {
-        margin-top: 1vh;
-      }
+      text-align: center;
+    }
+    &__intro {
+      margin-top: 1vh;
     }
   }
   &-tabs {
-    width: 600px;
+    width: 550px;
     border-radius: 5px;
 
     ::v-deep .el-tabs {
@@ -226,8 +239,8 @@ export default {
     }
   }
   &-booking {
-    height: 50vh;
-    padding: 20px 40px;
+    // max-height: 50vh;
+    padding: 20px;
     overflow-y: auto;
 
     .el-select,

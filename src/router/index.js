@@ -129,8 +129,20 @@ export const asyncRoutes = [
   {
     path: '/classroom/:id',
     name: 'Classroom',
-    component: () => import('@/views/classroom/index'),
+    component: () => import('@/views/classroom/detail'),
     meta: { title: '在线课堂' },
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    component: () => import('@/views/message/index'),
+    meta: { title: '留言回复' },
+  },
+  {
+    path: '/question',
+    name: 'Question',
+    component: () => import('@/views/question/index'),
+    meta: { title: '常见问题' },
   },
 ];
 

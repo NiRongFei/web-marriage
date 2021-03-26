@@ -10,7 +10,7 @@
       </li>
     </ul>
     <el-pagination
-      class="nj-content__pagination"
+      class="nj-pagination"
       prev-text="上一页"
       next-text="下一页"
       layout="prev,pager,next,total"

@@ -4,8 +4,8 @@
       <div class="header-wrap" style="height: 100px">
         <img class="header-logo" src="../assets/images/logo.png" alt="#" />
         <div class="header-title">
-          <!-- <div class="cn">南京市婚姻公共服务平台</div>
-          <div class="en">Nanjing Public Service Platform</div> -->
+          <div class="cn">南京市婚姻公共服务平台</div>
+          <div class="en">Nanjing Public Service Platform</div>
         </div>
       </div>
       <el-menu
@@ -164,6 +164,7 @@ export default {
         &__title,
         &__icon-arrow {
           color: #fff !important;
+          font-size: 16px;
         }
       }
     }

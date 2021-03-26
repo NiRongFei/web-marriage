@@ -1,6 +1,6 @@
 <template>
   <section class="activity-list">
-    <el-card class="activity-item" v-for="item in 10" :key="item">
+    <el-card class="activity-item" v-for="item in 10" :key="item" shadow="hover">
       <div class="activity-item__header" slot="header">
         <span>活动沙龙标题</span>
         <router-link :to="`/activity/${item}`">报名预约</router-link>

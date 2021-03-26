@@ -51,10 +51,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="预约日期" prop="date">
-            <el-date-picker v-model="bookForm.date" placeholder="选择预约日期"></el-date-picker>
+            <el-date-picker v-model="bookForm.date" placeholder="选择预约报名日期"></el-date-picker>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary" style="width: 100%">提交预约</el-button>
+          <el-form-item style="margin-top: 50px">
+            <el-button type="primary" style="width: 100%">报名预约</el-button>
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -71,7 +71,7 @@
             <el-input
               v-model="queryForm.mobile"
               type="number"
-              size="medium"
+              size="small"
               :maxlength="11"
               placeholder="输入预约人手机号"
               clearable
@@ -81,20 +81,40 @@
             <el-input
               v-model="queryForm.idcard"
               type="number"
-              size="medium"
+              size="small"
               :maxlength="18"
               placeholder="输入预约人身份证号"
               clearable
             ></el-input>
           </el-form-item>
         </el-form>
-        <el-table class="family-table" height="40vh" size="medium" :data="tableData" border stripe>
-          <el-table-column label="预约人" prop="name" align="center"></el-table-column>
-          <el-table-column label="身份证号" prop="idcard" align="center"></el-table-column>
-          <el-table-column label="联系方式" prop="mobile" align="center"></el-table-column>
-          <el-table-column label="课程主题" prop="theme" align="center"></el-table-column>
-          <el-table-column label="预约日期" prop="date" align="center"></el-table-column>
-          <el-table-column label="操作" align="center">
+        <el-table class="family-table" :data="tableData" size="medium" border stripe>
+          <el-table-column label="预约人" prop="name" align="center" width="150"></el-table-column>
+          <el-table-column
+            label="身份证号"
+            prop="idcard"
+            align="center"
+            width="200"
+          ></el-table-column>
+          <el-table-column
+            label="联系方式"
+            prop="mobile"
+            align="center"
+            width="150"
+          ></el-table-column>
+          <el-table-column
+            label="课程主题"
+            prop="theme"
+            align="center"
+            width="150"
+          ></el-table-column>
+          <el-table-column
+            label="预约日期"
+            prop="date"
+            align="center"
+            width="150"
+          ></el-table-column>
+          <el-table-column label="操作" align="center" width="100" fixed="right">
             <div class="operation">
               <el-popconfirm
                 trigger="click"
@@ -127,7 +147,7 @@ export default {
     bookRules() {
       return {
         name: [{ required: true, message: '请输入预约人姓名' }],
-        date: [{ required: true, message: '请选择预约日期' }],
+        date: [{ required: true, message: '请选择预约报名日期' }],
         theme: [{ required: true, message: '请选择辅导课程主题' }],
         idcard: [{ required: true, message: '请输入预约人身份证' }],
         mobile: [{ required: true, message: '请输入预约联系方式' }],
@@ -162,11 +182,11 @@ export default {
 <style lang="scss" scoped>
 .family {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
   &-info {
-    width: 500px;
+    width: 550px;
 
     &__image {
       display: block;
@@ -186,7 +206,7 @@ export default {
     }
   }
   &-tabs {
-    width: 600px;
+    width: 550px;
     border-radius: 5px;
 
     ::v-deep .el-tabs {
@@ -197,8 +217,8 @@ export default {
     }
   }
   &-booking {
-    height: 50vh;
-    padding: 20px 40px;
+    // max-height: 50vh;
+    padding: 20px;
 
     .el-select,
     .el-date-editor {
